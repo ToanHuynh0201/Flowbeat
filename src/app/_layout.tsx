@@ -1,7 +1,10 @@
+import { colors } from "@/constants/colors";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import {
+	SafeAreaProvider,
+	useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 const App = () => {
 	return (
@@ -13,14 +16,20 @@ const App = () => {
 };
 
 const RootNavigation = () => {
+	const insets = useSafeAreaInsets();
 	return (
-		<Stack>
-			<Stack.Screen
-				name="(tabs)"
-				options={{
-					headerShown: false,
-				}}
-			/>
+		<Stack
+			screenOptions={{
+				contentStyle: {
+					paddingTop: insets.top,
+					backgroundColor: colors.background,
+				},
+				headerStyle: {
+					backgroundColor: colors.background,
+				},
+			}}
+		>
+			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 		</Stack>
 	);
 };
